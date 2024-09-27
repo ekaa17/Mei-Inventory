@@ -22,9 +22,9 @@ class InventoryController extends Controller
             $query->whereDate('created_at', $request->tanggal);
         }
 
-        // Filter berdasarkan jenis ikan (barang masuk/keluar) jika ada
-        if ($request->has('jenis_ikan') && $request->jenis_ikan) {
-            $query->where('jenis', $request->jenis_ikan);
+        // Filter berdasarkan jenis (barang masuk/keluar) jika ada
+        if ($request->has('jenis') && $request->jenis) {
+            $query->where('jenis', $request->jenis);
         }
 
         // Ambil data sesuai filter

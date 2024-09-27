@@ -42,7 +42,7 @@
                                     <input type="date" name="tanggal" id="tanggal" class="form-control" onchange="document.getElementById('filterForm').submit();" value="{{ request('tanggal') }}"> 
                                 </div>
                                 <div class="col-md-5 my-1">
-                                    <select onchange="document.getElementById('filterForm').submit();" name="jenis_ikan" id="jenis_ikan" class="form-control">
+                                    <select onchange="document.getElementById('filterForm').submit();" name="jenis" id="jenis" class="form-control">
                                         <option value="" selected disabled>Filter Jenis Informasi</option>
                                         <option value="barang masuk">Barang Masuk</option>
                                         <option value="barang keluar">Barang Keluar</option>
