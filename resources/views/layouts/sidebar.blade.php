@@ -13,17 +13,17 @@
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href=" " class="nav-link collapsed">
+      <a href="{{ url('/data-staff') }}" class="nav-link collapsed">
         <i class="bi bi-people-fill"></i>
-        <span>Fitur 1</span>
+        <span>Data Karyawan</span>
       </a>
     </li><!-- End Nav -->
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href=" " class="nav-link collapsed">
+      <a href="{{ url('/data-product') }} " class="nav-link collapsed">
         <i class="bi bi-people-fill"></i>
-        <span>Fitur 2</span>
+        <span>Product</span>
       </a>
     </li><!-- End Nav -->
 

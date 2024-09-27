@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login');
 });
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/dashboard', function () {
-    return view('pages/dashboard');
+Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
+    // Route::get('/dashboard', [LoginController::class, 'dashboard']);
+    Route::get('/dashboard', function () {
+        return view('pages/dashboard');
+    });
+    Route::resource('/data-product', ProductController::class)->names('data-product');
+    Route::resource('/data-staff', StaffController::class)->names('data-staff');
 });
+
 

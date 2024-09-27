@@ -34,7 +34,7 @@
             @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="number" name="nip" id="nip" placeholder="NIP">
+                <input type="email" name="email" id="email" placeholder="email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
