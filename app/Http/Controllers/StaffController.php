@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -21,18 +22,30 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|numeric',
-            'stok_produk' => 'required|integer',
+            'email' => 'required|unique:users',
+            'role' => 'required',
+            'password' => 'required'
         ]);
+
+       if ($request->hasFile('profile')) {
+        $profile = $request->file('profile');
+        $imageName = now()->format('YmdHis') . $request->email . '.' . $profile->extension();
+        $profile->move(public_path('assets/img'), $imageName);
+       } else {
+        $imageName=null;
+       }
 
         User::create([
-            'nama_produk' => $request->nama_produk,
-            'harga_produk' => $request->harga_produk,
-            'stok_produk' => $request->stok_produk,
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'profile' => $imageName ,
+            'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('data-product.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('data-staff.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 }

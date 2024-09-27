@@ -33,10 +33,15 @@
                                 <label for="role">Role</label>
                                 <input type="text" name="role" id="role" class="form-control" placeholder="Masukkan role" required>
                             </div>
+
+                             <div class="form-group">
+                                <label for="password">password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
+                            </div>
                         
                             <div class="form-group">
-                                <label for="profile_image">Profile</label>
-                                <input type="file" name="profile_image" id="profile_image" class="form-control">
+                                <label for="profile">Profile</label>
+                                <input type="file" name="profile" id="profile" class="form-control">
                             </div>
                         
                             <button type="submit" class="btn btn-primary">Simpan</button>

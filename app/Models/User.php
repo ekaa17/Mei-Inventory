@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'role',
         'profile',
+        'password'
     ];
 
     // Jika menggunakan kolom timestamps (created_at, updated_at), ini sudah default true.
