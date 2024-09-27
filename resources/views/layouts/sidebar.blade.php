@@ -22,16 +22,32 @@
     <!-- Nav -->
     <li class="nav-item">
       <a href="{{ url('/data-product') }} " class="nav-link collapsed">
-        <i class="bi bi-people-fill"></i>
-        <span>Product</span>
+        <i class="bi bi-bag-fill"></i>
+        <span>Informasi Produk</span>
+      </a>
+    </li><!-- End Nav -->
+
+    <!-- Nav -->
+    <li class="nav-item">
+      <a href="{{ url('/inventory') }}" class="nav-link {{ Request::is('inventory') ? '' : 'collapsed' }}">
+        <i class="bi bi-arrow-left-right"></i>
+        <span> Inventory </span>
       </a>
     </li><!-- End Nav -->
 
     <!-- Nav -->
     <li class="nav-item">
       <a href=" " class="nav-link collapsed">
-        <i class="bi bi-people-fill"></i>
-        <span>Fitur 3</span>
+        <i class="bi bi-geo-alt-fill"></i>
+        <span> Pelacakan </span>
+      </a>
+    </li><!-- End Nav -->
+
+    <!-- Nav -->
+    <li class="nav-item">
+      <a href=" " class="nav-link collapsed">
+        <i class="bi bi-person-heart"></i>
+        <span> Data Pelanggan </span>
       </a>
     </li><!-- End Nav -->
 

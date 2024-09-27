@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     });
     Route::resource('/data-product', ProductController::class)->names('data-product');
     Route::resource('/data-staff', StaffController::class)->names('data-staff');
+    Route::resource('/inventory', InventoryController::class)->names('inventory');
 });
 
 
