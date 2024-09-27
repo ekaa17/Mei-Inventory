@@ -33,7 +33,7 @@ class StaffController extends Controller
        if ($request->hasFile('profile')) {
         $profile = $request->file('profile');
         $imageName = now()->format('YmdHis') . $request->email . '.' . $profile->extension();
-        $profile->move(public_path('assets/img'), $imageName);
+        $profile->move(public_path('assets/img/profile/'), $imageName);
        } else {
         $imageName=null;
        }

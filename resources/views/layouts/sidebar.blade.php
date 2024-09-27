@@ -29,7 +29,7 @@
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href="{{ url('/inventory') }}" class="nav-link {{ Request::is('inventory') ? '' : 'collapsed' }}">
+      <a href="{{ url('/inventory') }}" class="nav-link {{ Request::is('inventory*') ? '' : 'collapsed' }}">
         <i class="bi bi-arrow-left-right"></i>
         <span> Inventory </span>
       </a>
@@ -37,7 +37,7 @@
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href=" " class="nav-link collapsed">
+      <a href="{{ url('/pelacakan') }}" class="nav-link {{ Request::is('pelacakan*') ? '' : 'collapsed' }}">
         <i class="bi bi-geo-alt-fill"></i>
         <span> Pelacakan </span>
       </a>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pelacakan;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -41,5 +43,11 @@ class LoginController extends Controller
             }
         } 
         return redirect('/');
+    }
+
+    public function dashboard() {
+        $pemasukan = Pelacakan::where('status', 'selesai')->sum('total');
+        $karyawan = User::where('role', 'Karyawan')->count();
+        return view('pages.dashboard', compact('pemasukan', 'karyawan'));
     }
 }
