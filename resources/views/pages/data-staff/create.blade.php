@@ -31,7 +31,11 @@
                         
                             <div class="form-group">
                                 <label for="role">Role</label>
-                                <input type="text" name="role" id="role" class="form-control" placeholder="Masukkan role" required>
+                                <select name="role" id="role" class="form-control" required>
+                                    <option value="" disabled selected>Pilih role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="karyawan">Karyawan</option>
+                                </select>
                             </div>
 
                              <div class="form-group">
