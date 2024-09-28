@@ -4,6 +4,7 @@ use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelacakanController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
 /*
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     Route::resource('/data-staff', StaffController::class)->names('data-staff');
     Route::resource('/inventory', InventoryController::class)->names('inventory');
     Route::resource('/pelacakan', PelacakanController::class)->names('pelacakan');
+    Route::resource('/data-pelanggan', PelangganController::class)->names('pelanggan');
     Route::get('/diantar/{id}', [PelacakanController::class, 'update1']);
 });
 

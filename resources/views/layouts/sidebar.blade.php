@@ -45,7 +45,7 @@
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href=" " class="nav-link collapsed">
+      <a href="{{ url('/data-pelanggan') }}" class="nav-link collapsed">
         <i class="bi bi-person-heart"></i>
         <span> Data Pelanggan </span>
       </a>
