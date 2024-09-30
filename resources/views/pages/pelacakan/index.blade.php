@@ -96,12 +96,12 @@
                                                         <tr>
                                                             <td> Nama </td>
                                                             <td class="w-25"> : </td>
-                                                            <td> {{ $item->customer->nama }} </td>
+                                                            <td> {{ $item->customer->nama_pelanggan }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td> Nama </td>
                                                             <td class="w-25"> : </td>
-                                                            <td> {{ $item->customer->alamat }} </td>
+                                                            <td> {{ $item->customer->alamat_pelanggan }} </td>
                                                         </tr>
                                                     </table>
                                                   </div>

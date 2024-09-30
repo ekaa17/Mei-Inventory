@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Inventory;
 use App\Models\Pelacakan;
+use App\Models\Pelanggan;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class PelacakanController extends Controller
     {
         $title = 'Pelacakan';
         $produk = Product::all();
-        $customer = Customer::all();
+        $customer = Pelanggan::all();
         return view('pages.pelacakan.create', compact('title', 'produk', 'customer'));
     }
 
@@ -65,7 +65,7 @@ class PelacakanController extends Controller
         $pelacakan->bukti = null;
 
         $produk = Product::findOrFail($request->produk);
-        $customer = Customer::findOrFail($request->customer);
+        $customer = Pelanggan::findOrFail($request->customer);
 
 
         if ($produk->stok_produk >= $request->jumlah_barang) {

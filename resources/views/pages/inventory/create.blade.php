@@ -35,7 +35,7 @@
                                   <select name="produk" id="produk" class="form-select @error('produk') is-invalid @enderror">
                                     <option selected disabled>Pilih Informasi Produk</option>
                                     @foreach ($produk as $item)
-                                      <option value="{{ $item->id }}" {{ old('produk') == $item->id ? 'selected' : '' }}> {{ $item->nama_produk }} | Stok : {{ $item->stok_produk }} </option>  
+                                      <option value="{{ $item->id }}" {{ old('produk') == $item->id ? 'selected' : '' }}> {{ $item->nama_produk }} | Stok : {{ $item->stok_produk }} | Harga : {{ $item->harga_produk }} </option>  
                                     @endforeach
                                   </select>
                                   @error('produk') 

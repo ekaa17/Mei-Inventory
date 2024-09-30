@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_produk'); 
             $table->integer('harga_produk');
             $table->integer('stok_produk'); 
+            $table->foreignId('id_sales')->references('id')->on('sales')->onDelete('cascade');
             $table->timestamps(); 
         });
     }

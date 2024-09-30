@@ -36,7 +36,7 @@
                                         <option selected disabled>Pilih Informasi Produk</option>
                                         @foreach ($produk as $item)
                                             <option value="{{ $item->id }}" data-harga="{{ $item->harga_produk }}" {{ old('produk') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->nama_produk }} | Stok: {{ $item->stok_produk }} | Harga: Rp{{ number_format($item->harga_produk, 0, ',', '.') }}
+                                                {{ $item->nama_produk }} | {{ $item->sales->nama }} | Stok: {{ $item->stok_produk }} | Harga: Rp{{ number_format($item->harga_produk, 0, ',', '.') }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -70,7 +70,7 @@
                                         <option selected disabled>Pilih Customer</option>
                                         @foreach ($customer as $item)
                                             <option value="{{ $item->id }}" {{ old('customer') == $item->id ? 'selected' : '' }}>
-                                                Nama : {{ $item->nama }} | Alamat: {{ $item->alamat }}
+                                                Nama : {{ $item->nama_pelanggan }} | Alamat: {{ $item->alamat_pelanggan }}
                                             </option>
                                         @endforeach
                                     </select>

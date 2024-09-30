@@ -12,7 +12,9 @@ class StaffController extends Controller
     {
         $no = 1;
         $data = User::orderBy('name')->get();
-        return view('pages.data-staff.index', compact('no', 'data'));
+        $karyawan = User::where('role','Karyawan')->count();
+        $admin = User::where('role','Admin')->count();
+        return view('pages.data-staff.index', compact('no', 'data', 'karyawan', 'admin'));
     }
 
     public function create()

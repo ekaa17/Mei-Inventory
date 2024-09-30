@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Sales;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -11,5 +12,10 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['nama_produk', 'harga_produk', 'stok_produk'];
+    protected $fillable = ['nama_produk', 'harga_produk', 'stok_produk', 'id_sales'];
+
+    public function sales()
+    {
+        return $this->belongsTo(Sales::class, 'id_sales');
+    }
 }

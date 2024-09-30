@@ -11,17 +11,35 @@
       </a>
     </li><!-- End Dashboard Nav -->
 
+    @if (auth()->user()->role == 'Admin')
+      <!-- Nav -->
+      <li class="nav-item">
+        <a href="{{ url('/data-staff') }}" class="nav-link {{ Request::is('data-staff*') ? '' : 'collapsed' }}">
+          <i class="bi bi-people-fill"></i>
+          <span>Data Karyawan</span>
+        </a>
+      </li><!-- End Nav -->
+    @endif
+
     <!-- Nav -->
     <li class="nav-item">
-      <a href="{{ url('/data-staff') }}" class="nav-link collapsed">
-        <i class="bi bi-people-fill"></i>
-        <span>Data Karyawan</span>
+      <a href="{{ url('/data-pelanggan') }}" class="nav-link {{ Request::is('data-pelanggan*') ? '' : 'collapsed' }}">
+        <i class="bi bi-person-heart"></i>
+        <span> Data Pelanggan </span>
       </a>
     </li><!-- End Nav -->
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href="{{ url('/data-product') }} " class="nav-link collapsed">
+      <a href="{{ url('/data-sales') }}" class="nav-link {{ Request::is('data-sales*') ? '' : 'collapsed' }}">
+        <i class="bi bi-person-lines-fill"></i>
+        <span> Data Sales </span>
+      </a>
+    </li><!-- End Nav -->
+
+    <!-- Nav -->
+    <li class="nav-item">
+      <a href="{{ url('/data-product') }} " class="nav-link {{ Request::is('data-product*') ? '' : 'collapsed' }}">
         <i class="bi bi-bag-fill"></i>
         <span>Informasi Produk</span>
       </a>
@@ -43,17 +61,9 @@
       </a>
     </li><!-- End Nav -->
 
-    <!-- Nav -->
-    <li class="nav-item">
-      <a href="{{ url('/data-pelanggan') }}" class="nav-link collapsed">
-        <i class="bi bi-person-heart"></i>
-        <span> Data Pelanggan </span>
-      </a>
-    </li><!-- End Nav -->
-
     <!-- Logout Nav -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="">
+      <a class="nav-link collapsed" href="/logout">
         <i class="bi bi-box-arrow-right"></i>
         <span>Logout</span>
       </a>

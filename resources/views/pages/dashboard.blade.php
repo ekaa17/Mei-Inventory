@@ -15,7 +15,7 @@
 
         <div class="row">
     
-            <!-- GuruCard -->
+            {{-- <!-- Pemasukan Card -->
             <div class="col-xxl-6 col-md-6">
               <div class="card info-card sales-card">
 
@@ -33,9 +33,9 @@
                 </div>
 
               </div>
-            </div><!-- End GuruCard -->
+            </div><!-- End Pemasukan Card -->
 
-            <!-- Siswa Card -->
+            <!-- Karyawan Card -->
             <div class="col-xxl-6 col-md-6">
               <div class="card info-card revenue-card">
 
@@ -53,7 +53,170 @@
                 </div>
 
               </div>
-            </div><!-- End Siswa Card -->          
+            </div><!-- End Siswa Card -->           --}}
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter Tahun</h6>
+                    </li>
+
+                    <li>
+                      <form action="/dashboard" method="GET">
+                        <select id="tahunSelect" name="tahun" onchange="this.form.submit()" class="form-select">
+                          @foreach($daftarTahun as $tahun)
+                            <option value="{{ $tahun }}" {{ $tahun == $tahunIni ? 'selected' : '' }}>{{ $tahun }}</option>
+                          @endforeach
+                        </select>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Reports <span>/ {{ $tahunIni }}</span></h5>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      const bulan = @json($bulanBarang);
+                      const pengeluaran = @json($data_total_harga_masuk);
+                      const pemasukan = @json($data_total_harga_keluar);
+                      new ApexCharts(document.querySelector("#reportsChart"), {
+                        series: [{
+                          name: 'Pemasukan',
+                          data: pemasukan
+                        }, {
+                          name: 'Pengeluaran',
+                          data: pengeluaran
+                        }],
+                        chart: {
+                          height: 350,
+                          type: 'area',
+                          toolbar: {
+                            show: false
+                          },
+                        },
+                        markers: {
+                          size: 4
+                        },
+                        colors: ['#2eca6a', '#ff771d'],
+                        fill: {
+                          type: "gradient",
+                          gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.3,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100]
+                          }
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          curve: 'smooth',
+                          width: 2
+                        },
+                        xaxis: {
+                          categories: bulan
+                        },
+                      }).render();
+                    });
+                  </script>
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+    
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sales - Produk</h5>
+    
+                  <!-- Doughnut Chart -->
+                  <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      // Mengambil data dari server
+                      let data_sales = {!! json_encode($data_sales) !!};
+                      let banyak_produk = {!! json_encode($banyak_produk) !!};
+
+                      new Chart(document.querySelector('#doughnutChart'), {
+                        type: 'doughnut',
+                        data: {
+                          labels: data_sales,
+                          datasets: [{
+                            label: 'Total',
+                            data: banyak_produk,
+                            backgroundColor: [
+                              'rgb(255, 99, 132)',
+                              'rgb(54, 162, 235)',
+                              'rgb(255, 205, 86)'
+                            ],
+                            hoverOffset: 4
+                          }]
+                        }
+                      });
+                    });
+                  </script>
+                  <!-- End Doughnut CHart -->
+    
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Status Pelacakan</h5>
+
+                  @if ($cek_status != 0)
+                    <!-- Pie Chart -->
+                    <canvas id="pieChart" style="max-height: 400px;"></canvas>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        // Mengambil data dari server
+                        let status = {!! json_encode($status) !!};
+                        let data = {!! json_encode($data) !!};
+
+                        new Chart(document.querySelector('#pieChart'), {
+                          type: 'pie',
+                          data: {
+                            labels: status,
+                            datasets: [{
+                              label: 'Total',
+                              data: data,
+                              backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 205, 86)'
+                              ],
+                              hoverOffset: 4
+                            }]
+                          }
+                        });
+                      });
+                    </script>
+                    <!-- End Pie CHart -->
+                  @else
+                    <p class="text-center">
+                      Belum ada aktivitas terbaru
+                    </p>
+                  @endif
+    
+                </div>
+              </div>
+            </div>
+
 
           </div>
     </section>

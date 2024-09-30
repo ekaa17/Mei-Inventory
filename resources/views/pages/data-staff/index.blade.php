@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <div class="d-flex align-items-center justify-content-between m-3">
-                            {{-- <h5 class="card-title">Total : {{ $staff->count() }} Staff</h5> --}}
+                            <h5 class="card-title">Total : {{ $karyawan }} Karyawan | {{ $admin }} Admin</h5>
                             <a href="{{ route('data-staff.create') }}" class="btn btn-primary">
                                 <i class="bi bi-plus"></i> Data Baru
                             </a>

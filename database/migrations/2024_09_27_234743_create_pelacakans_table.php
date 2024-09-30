@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pelacakans', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['dikemas', 'dikirim', 'selesai']);
-            $table->foreignId('id_customer')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreignId('id_customer')->references('id')->on('pelanggans')->onDelete('cascade');
             $table->foreignId('id_karyawan')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('id_produk')->references('id')->on('products')->onDelete('cascade');
             $table->integer('jumlah_barang');

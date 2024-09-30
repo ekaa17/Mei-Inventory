@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelacakanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StaffController;
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,16 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     Route::get('/dashboard', [LoginController::class, 'dashboard']);
-    Route::resource('/data-product', ProductController::class)->names('data-product');
     Route::resource('/data-staff', StaffController::class)->names('data-staff');
+    Route::resource('/data-pelanggan', PelangganController::class)->names('pelanggan');
+    Route::resource('/data-product', ProductController::class)->names('data-product');
+    Route::resource('/data-sales', SalesController::class)->names('data-sales');
     Route::resource('/inventory', InventoryController::class)->names('inventory');
     Route::resource('/pelacakan', PelacakanController::class)->names('pelacakan');
-    Route::resource('/data-pelanggan', PelangganController::class)->names('pelanggan');
     Route::get('/diantar/{id}', [PelacakanController::class, 'update1']);
+});
+Route::group(['middleware' => 'cekrole:Admin'], function() {
+    Route::resource('/data-staff', StaffController::class)->names('data-staff');
 });
 
 
