@@ -17,7 +17,7 @@
 <body>
     <div class="wrapper">
         <div class="logo">
-            <img src="{{ asset('assets/img/logo.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="">
         </div>
         <div class="text-center mt-4 name">
             Sistem Informasi Inventory <br>
