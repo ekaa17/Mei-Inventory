@@ -103,22 +103,58 @@ class PelacakanController extends Controller
 
     public function update($id, Request $request) {
         // dd($request);    
-        $request->validate([
-            'bukti' => 'required',
-        ]);
+        if ($request->file('bukti')) {
+            $request->validate([
+                'bukti' => 'required',
+            ]);
+    
+            $bukti = $request->file('bukti');
+            $imageName = now()->format('YmdHis') . '.' . $bukti->extension();
+            $bukti->move(public_path('assets/img/bukti/'), $imageName);
+    
+            $update = Pelacakan::findOrFail($id);
+            $update->status = 'selesai';
+            $update->bukti = $imageName;
+    
+            if ($update->save()) {
+                return redirect()->back()->with('success', 'Status berhasil diperbarui!');
+            } else {
+                return redirect()->back()->with('error', 'Gagal mengupdate status');
+            }
+        } elseif ($request->has('pembayaran')) {
+            $request->validate([
+                'pembayaran' => 'required',
+                'sisa' => 'required',
+            ]);
 
-        $bukti = $request->file('bukti');
-        $imageName = now()->format('YmdHis') . '.' . $bukti->extension();
-        $bukti->move(public_path('assets/img/bukti/'), $imageName);
+            $update = Pelacakan::findOrFail($id);
+            $update->jumlah_pelunasan = $request->pembayaran;
+            $update->sisa_pelunasan = $request->sisa;
 
-        $update = Pelacakan::findOrFail($id);
-        $update->status = 'selesai';
-        $update->bukti = $imageName;
-
-        if ($update->save()) {
-            return redirect()->back()->with('success', 'Status berhasil diperbarui!');
+            if ($update->save()) {
+                return redirect()->back()->with('success', 'Pembayaran berhasil diperbarui!');
+            } else {
+                return redirect()->back()->with('error', 'Gagal mengupdate pembayaran');
+            }
         } else {
-            return redirect()->back()->with('error', 'Gagal mengupdate status');
+            $request->validate([
+                'pembayaran_sisa' => 'required',
+                'sisa_pembayaran' => 'required',
+            ]);
+
+            $update = Pelacakan::findOrFail($id);
+            $pelunasan_sebelumnya = $update->jumlah_pelunasan;
+            $update_pelunasan = $pelunasan_sebelumnya + $request->pembayaran_sisa; 
+            $update->jumlah_pelunasan = $update_pelunasan;
+            $update->sisa_pelunasan = $request->sisa_pembayaran;
+
+            if ($update->save()) {
+                return redirect()->back()->with('success', 'Pembayaran berhasil diperbarui!');
+            } else {
+                return redirect()->back()->with('error', 'Gagal mengupdate pembayaran');
+            }
         }
+        
     }
+
 }

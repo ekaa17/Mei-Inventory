@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('id_produk')->references('id')->on('products')->onDelete('cascade');
             $table->integer('jumlah_barang');
             $table->integer('total');
+            $table->integer('jumlah_pelunasan')->nullable();
+            $table->integer('sisa_pelunasan')->nullable();
             $table->string('bukti')->nullable();
             $table->timestamps();
         });

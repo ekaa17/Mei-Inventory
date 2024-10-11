@@ -63,7 +63,7 @@
                                         <th> Status </th>
                                         <th> Detail Cust </th>
                                         <th> Penanggung Jawab </th>
-                                        <th> Progres </th>
+                                        <th rowspan="2"> Progres </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -150,6 +150,107 @@
                                                 </div>
                                             @endif
                                         </td>
+                                        @if ($item->bukti != null)                                            
+                                            <td>
+                                                @if ($item->jumlah_pelunasan == null)
+                                                    <button type="button" class="btn btn-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#bayar{{ $item->id }}"><i class="bi bi-coin"></i></button>
+                                                    <div class="modal fade" id="bayar{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <form action="{{ route('pelacakan.update', $item->id) }}" method="post">
+                                                                @csrf
+                                                                @method('put')
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Pelunasan Barang</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body row">
+                                                                        <div class="col-md-12">
+                                                                            <label for="total" class="form-label">Total</label>
+                                                                            <input type="number" class="form-control @error('total') is-invalid @enderror shadow-none" id="total" value="{{ $item->total }}" readonly>
+                                                                            @error('total')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="col-md-6 mt-3">
+                                                                            <label for="pembayaran" class="form-label">Jumlah Pembayaran</label>
+                                                                            <input type="number" max="{{ $item->total }}" name="pembayaran" class="form-control @error('pembayaran') is-invalid @enderror shadow-none" id="pembayaran" value="{{ old('pembayaran') }}">
+                                                                            @error('pembayaran')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="col-md-6 mt-3">
+                                                                            <label for="sisa" class="form-label">Sisa Pembayaran</label>
+                                                                            <input type="number" name="sisa" class="form-control @error('sisa') is-invalid @enderror shadow-none" id="sisa" value="{{ old('sisa') }}" readonly>
+                                                                            @error('sisa')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer d-flex justify-content-between align-items-center">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                                                        <button type="submit" class="btn btn-primary">Kirim</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                @else                   
+                                                    @if ($item->total == $item->jumlah_pelunasan)
+                                                        <span class="badge rounded-pill bg-success"> LUNAS </span>
+                                                    @else
+                                                        <button type="button" class="btn btn-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#pelunasan{{ $item->id }}">- {{ $item->sisa_pelunasan }}</button>
+                                                        <div class="modal fade" id="pelunasan{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <form action="{{ route('pelacakan.update', $item->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Pelunasan Barang</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body row">
+                                                                            <div class="col-md-12">
+                                                                                <label for="sisa_pelunasan" class="form-label">Sisa Pembayaran Sebelumnya</label>
+                                                                                <input type="number" class="form-control sisa_pelunasan @error('sisa_pelunasan') is-invalid @enderror shadow-none" value="{{ $item->sisa_pelunasan }}" readonly>
+                                                                                @error('sisa_pelunasan')
+                                                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-6 mt-3">
+                                                                                <label for="pembayaran_sisa" class="form-label">Pembayaran Sekarang</label>
+                                                                                <input type="number" max="{{ $item->sisa_pelunasan }}" name="pembayaran_sisa" class="form-control pembayaran_sisa @error('pembayaran_sisa') is-invalid @enderror shadow-none" value="{{ old('pembayaran_sisa') }}">
+                                                                                @error('pembayaran_sisa')
+                                                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-6 mt-3">
+                                                                                <label for="sisa_pembayaran" class="form-label">Sisa Pembayaran Sekarang</label>
+                                                                                <input type="number" name="sisa_pembayaran" class="form-control sisa_pembayaran @error('sisa_pembayaran') is-invalid @enderror shadow-none" value="{{ old('sisa_pembayaran') }}" readonly>
+                                                                                @error('sisa_pembayaran')
+                                                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer d-flex justify-content-between align-items-center">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                                                            <button type="submit" class="btn btn-primary">Kirim</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>                                                                
+                                                            </div>
+                                                        </div>
+                                                    @endif                                                    
+                                                @endif
+                                            </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -163,4 +264,41 @@
         </div>
 
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pembayaranInput = document.getElementById('pembayaran');
+    
+            // Call the function when the "pembayaran" field is changed
+            pembayaranInput.addEventListener('input', calculateSisa);
+    
+            function calculateSisa() {
+                const total = parseFloat(document.getElementById('total').value) || 0;
+                const pembayaran = parseFloat(pembayaranInput.value) || 0;
+                const sisa = total - pembayaran;
+    
+                document.getElementById('sisa').value = sisa >= 0 ? sisa : 0;
+            }
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all elements with the class 'pembayaran_sisa'
+            const pembayaranSisaElements = document.querySelectorAll('.pembayaran_sisa');
+
+            pembayaranSisaElements.forEach(pembayaranSisa => {
+                // Add event listener to each 'pembayaran_sisa' input
+                pembayaranSisa.addEventListener('input', function() {
+                    const sisaPelunasan = parseFloat(pembayaranSisa.closest('.modal-body').querySelector('.sisa_pelunasan').value) || 0;
+                    const pembayaran = parseFloat(pembayaranSisa.value) || 0;
+                    const sisa = sisaPelunasan - pembayaran;
+
+                    // Update the corresponding 'sisa_pembayaran' input in the same form
+                    const sisaPembayaran = pembayaranSisa.closest('.modal-body').querySelector('.sisa_pembayaran');
+                    sisaPembayaran.value = sisa >= 0 ? sisa : 0;
+                });
+            });
+        });
+    </script>
 @endsection
