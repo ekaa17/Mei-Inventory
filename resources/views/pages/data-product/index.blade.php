@@ -65,7 +65,7 @@
                                         <td> {{ $no++ }} </td>
                                         <td> {{ $data->nama_produk}} </td>
                                         <td> {{ $data->sales->nama}} </td>
-                                        <td>{{ $data->harga_produk }}</td>
+                                        <td>Rp. {{ number_format($data->harga_produk, 0, ',', '.') }}</td>
                                         <td>{{ $data->stok_produk }}</td>
                                         <td>
                                              {{-- edit data --}}

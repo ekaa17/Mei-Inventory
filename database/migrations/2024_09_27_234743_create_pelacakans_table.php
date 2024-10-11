@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('jumlah_pelunasan')->nullable();
             $table->integer('sisa_pelunasan')->nullable();
             $table->string('bukti')->nullable();
+            $table->foreignId('id_inventory')->nullable()->references('id')->on('inventories')->onDelete('cascade');
             $table->timestamps();
         });
     }

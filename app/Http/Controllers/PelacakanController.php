@@ -77,8 +77,12 @@ class PelacakanController extends Controller
                 $aliran_barang->jumlah_barang = $request->jumlah_barang;
                 $aliran_barang->id_produk = $request->produk;
                 $aliran_barang->id_karyawan = auth()->user()->id;
-                $aliran_barang->pesan = "Pembelian " . $produk->nama_produk . " oleh " . $customer->nama;
+                $aliran_barang->pesan = "Pembelian " . $produk->nama_produk . " oleh " . $customer->nama_pelanggan;
+                $aliran_barang->pembayaran = $request->total;
                 $aliran_barang->save();
+
+                $pelacakan->id_inventory = $aliran_barang->id;
+                $pelacakan->save();
 
                 return redirect()->route('pelacakan.index')->with('success', 'Data berhasil disimpan!');
             } else {

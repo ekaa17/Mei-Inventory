@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Inventory;
+use App\Models\Pelanggan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,6 +29,11 @@ class Pelacakan extends Model
     public function customer()
     {
         return $this->belongsTo(Pelanggan::class, 'id_customer');
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class, 'id_inventory');
     }
 
 }

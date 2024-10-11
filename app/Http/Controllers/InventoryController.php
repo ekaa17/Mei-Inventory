@@ -53,6 +53,7 @@ class InventoryController extends Controller
         $aliran_barang = new Inventory();
         $aliran_barang->jenis = $jenis;
         $aliran_barang->jumlah_barang = $request->jumlah_barang;
+        $aliran_barang->pembayaran = $request->total_harga;
         $aliran_barang->id_produk = $request->produk;
         $aliran_barang->id_karyawan = auth()->user()->id;
         $aliran_barang->pesan = $request->pesan;

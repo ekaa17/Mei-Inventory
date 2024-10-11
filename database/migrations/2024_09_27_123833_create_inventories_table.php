@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('id_produk')->references('id')->on('products')->onDelete('cascade');
             $table->foreignId('id_karyawan')->references('id')->on('users')->onDelete('cascade');
             $table->text('pesan')->nullable();
+            $table->integer('pembayaran')->nullable();
             $table->timestamps();
         });
     }

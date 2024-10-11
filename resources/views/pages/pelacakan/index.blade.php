@@ -72,7 +72,7 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td> {{ $item->produk->nama_produk }} </td>
                                         <td>{{ $item->jumlah_barang }} </td>
-                                        <td>{{ $item->total }}</td>
+                                        <td>Rp. {{ number_format($item->total, 0, ',', '.') }}</td>
                                         <td>
                                             @if($item->status == 'dikemas')
                                                 <span class="badge rounded-pill bg-secondary">{{ $item->status }}</span>
