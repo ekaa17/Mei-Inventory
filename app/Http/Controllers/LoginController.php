@@ -51,6 +51,10 @@ class LoginController extends Controller
 
     public function dashboard(Request $request)
     {
+        $karyawan = User::where('role', 'Karyawan')->count();
+        $pemasukan = Inventory::where('jenis', 'barang masuk')->sum('pembayaran');
+        $pengeluaran = Inventory::where('jenis', 'barang keluar')->sum('pembayaran');
+
         // Mengambil daftar tahun dari tabel inventories
         $daftarTahun = Inventory::selectRaw('YEAR(created_at) as tahun')
             ->distinct()
@@ -132,6 +136,6 @@ class LoginController extends Controller
         }
     
         // Mengirim data ke view
-        return view('pages.dashboard', compact('bulanBarang', 'data_total_harga_keluar', 'data_total_harga_masuk', 'tahunIni', 'daftarTahun', 'cek_status', 'status', 'data', 'data_sales', 'banyak_produk'));
+        return view('pages.dashboard', compact('karyawan', 'pemasukan', 'pengeluaran', 'bulanBarang', 'data_total_harga_keluar', 'data_total_harga_masuk', 'tahunIni', 'daftarTahun', 'cek_status', 'status', 'data', 'data_sales', 'banyak_produk'));
     }
 }
