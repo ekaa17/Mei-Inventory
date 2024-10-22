@@ -13,12 +13,12 @@
 
     <section class="section dashboard">
 
-        <div class="row p-5" style="background-color: #798645">
+        <div class="row p-5" >
     
             <!-- Pemasukan Card -->
             <div class="col-xxl-4 col-md-4">
               {{-- <div class="card info-card revenue-card bg-success"> --}}
-              <div class="card info-card revenue-card" style="background-color: #FEFAE0">
+              <div class="card info-card revenue-card" >
 
                 <div class="card-body">
                   <h5 class="card-title">Pemasukan</h5>
@@ -39,7 +39,7 @@
             <!-- Pengeluaran Card -->
             <div class="col-xxl-4 col-md-4">
               {{-- <div class="card info-card sales-card bg-primary"> --}}
-              <div class="card info-card sales-card" style="background-color: #FEFAE0">
+              <div class="card info-card sales-card" >
 
                 <div class="card-body">
                   <h5 class="card-title">Pengeluaran</h5>
@@ -60,7 +60,7 @@
             <!-- Karyawan Card -->
             <div class="col-xxl-4 col-md-4">
               {{-- <div class="card info-card customers-card bg-warning"> --}}
-              <div class="card info-card customers-card" style="background-color: #FEFAE0">
+              <div class="card info-card customers-card" >
 
                 <div class="card-body">
                   <h5 class="card-title"> Total Karyawan </h5>
@@ -80,7 +80,7 @@
 
             <!-- Reports -->
             <div class="col-12">
-              <div class="card" style="background-color: #F2EED7">
+              <div class="card" >
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -161,7 +161,7 @@
             </div><!-- End Reports -->
     
             <div class="col-lg-6">
-              <div class="card" style="background-color: #F2EED7">
+              <div class="card" >
                 <div class="card-body">
                   <h5 class="card-title">Sales - Produk</h5>
     
@@ -198,7 +198,7 @@
             </div>
 
             <div class="col-lg-6">
-              <div class="card" style="background-color: #F2EED7">
+              <div class="card" >
                 <div class="card-body">
                   <h5 class="card-title">Status Pelacakan</h5>
 
